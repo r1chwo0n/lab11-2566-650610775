@@ -13,7 +13,7 @@ export default function RegisFormPage() {
   const [buyBottle, setBuyBottle] = useState(false);
   const [buyShoes, setBuyShoes] = useState(false);
   const [buyCap, setBuyCap] = useState(false);
-  const [agree, setAgree] = useState(false);
+  const [isUserAgree, setAgree] = useState(false);
 
   const inputFnameOnChange = (event) => {
     setFnameError(false);
@@ -91,7 +91,7 @@ export default function RegisFormPage() {
     }
 
     let genderOk = true;
-    if (gender !== "male" || gender !== "famale") {
+    if (gender !== "male" && gender !== "female") {
       genderOk == false;
       setGenderError(true);
     }
@@ -132,7 +132,7 @@ export default function RegisFormPage() {
       <div>
         <label className="form-label">Plan</label>
         <select
-          className={"form-select" + (planError ? "is-invalid" : "")}
+          className={"form-control" + (planError ? " is-invalid" : "")}
           onChange={selectPlanOnChange}
           value={plan}
         >
@@ -224,7 +224,7 @@ export default function RegisFormPage() {
           className="me-2"
           type="checkbox"
           onChange={cbAgreeOnChange}
-          checked={agree}
+          checked={isUserAgree}
         />
         I agree to the terms and conditions
       </div>
@@ -233,7 +233,7 @@ export default function RegisFormPage() {
       <button
         className="btn btn-success my-2"
         onClick={registerBtnOnClick}
-        disabled={!agree}
+        disabled={!isUserAgree}
         //You can embbed a state like below to disabled the button
         //disabled={isUserAgreed}
       >
